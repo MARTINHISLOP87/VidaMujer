@@ -1,0 +1,17 @@
+export const Colors = {
+  rose: "#E85A78",
+  rosado: "#fcb0e0",
+  fucsia: "#FC38B0",
+  roseDark: "#D94667",
+  roseLight: "#FDE8EE",
+  orange: "#F48A58",
+  orangeLight: "#FFF0E8",
+  amber: "#D99131",
+  amberLight: "#FFF5DE",
+  background: "#FFF9F8",
+  surface: "#FFFFFF",
+  text: "#292524",
+  muted: "#78716C",
+  border: "#EDE7E4",
+  white: "#FFFFFF",
+} as const;
