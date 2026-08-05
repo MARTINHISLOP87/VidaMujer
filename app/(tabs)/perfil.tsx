@@ -2,12 +2,12 @@ import { useApp } from "@/contexts/AppContext";
 import { Colors } from "@/theme";
 import { router } from "expo-router";
 import {
-    Alert,
-    Pressable,
-    SafeAreaView,
-    StyleSheet,
-    Text,
-    View,
+  Alert,
+  Pressable,
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  View,
 } from "react-native";
 export default function ProfileScreen() {
   const { profile, resetProfile } = useApp();
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     marginTop: 22,
     borderRadius: 16,
     padding: 18,
-    backgroundColor: Colors.surface,
+    backgroundColor: Colors.white,
     borderWidth: 1,
     borderColor: Colors.border,
   },
