@@ -1,17 +1,27 @@
 export const Colors = {
-  rose: "#E85A78",
-  rosado: "#fcb0e0",
+  //colores del logo y la marca
   fucsia: "#FC38B0",
-  roseDark: "#D94667",
-  roseLight: "#FDE8EE",
-  orange: "#F48A58",
-  orangeLight: "#FFF0E8",
-  amber: "#D99131",
-  amberLight: "#FFF5DE",
-  background: "#FFF9F8",
-  surface: "#FFFFFF",
+  fucsiaLight: "#FCB0E0",
+  fucsiaDark: "#E394C7",
+
+  //colores de texto y fondo
   text: "#292524",
   muted: "#78716C",
-  border: "#EDE7E4",
   white: "#FFFFFF",
+  amber: "#D99131",
+  verde: "#10b981",
+  azul: "#6366f1",
+  orange: "#F48A58",
+
+  //colores de la app
+  rose: "#E85A78",
+  rosado: "#fcb0e0",
+  roseDark: "#D94667",
+  roseLight: "#FDE8EE",
+  orangeLight: "#FFF0E8",
+  amberLight: "#FFF5DE",
+  background: "#FFF9F8",
+  border: "#EDE7E4",
+  bgverde: "#d1fae5",
+  bgazul: "#e0e7ff",
 } as const;

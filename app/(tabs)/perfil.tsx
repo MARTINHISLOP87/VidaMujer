@@ -1,6 +1,76 @@
-import { Alert, Pressable, SafeAreaView, StyleSheet, Text, View } from 'react-native';
-import { router } from 'expo-router';
-import { useApp } from '@/contexts/AppContext';
-import { Colors } from '@/theme';
-export default function ProfileScreen() { const { profile, resetProfile } = useApp(); const reset = () => Alert.alert('Reiniciar registro', 'Se eliminarán los datos guardados en este dispositivo.', [{ text: 'Cancelar', style: 'cancel' }, { text: 'Reiniciar', style: 'destructive', onPress: async () => { await resetProfile(); router.replace('/onboarding'); } }]); return <SafeAreaView style={styles.safe}><View style={styles.container}><Text style={styles.title}>Mi perfil</Text><View style={styles.card}><Text style={styles.name}>{profile?.name}</Text><Text style={styles.detail}>Idioma: {profile?.language === 'mi' ? 'Miskito' : 'Español'}</Text><Text style={styles.detail}>Etapa: {profile?.stage}</Text></View><Pressable onPress={reset} style={styles.button}><Text style={styles.buttonText}>Reiniciar onboarding</Text></Pressable></View></SafeAreaView>; }
-const styles = StyleSheet.create({ safe: { flex: 1, backgroundColor: Colors.background }, container: { padding: 24 }, title: { fontSize: 26, fontWeight: '800', color: Colors.text }, card: { marginTop: 22, borderRadius: 16, padding: 18, backgroundColor: Colors.surface, borderWidth: 1, borderColor: Colors.border }, name: { fontSize: 19, color: Colors.roseDark, fontWeight: '700', marginBottom: 12 }, detail: { color: Colors.muted, marginTop: 5 }, button: { marginTop: 24, borderWidth: 1, borderColor: '#E9B7C2', borderRadius: 12, padding: 14, alignItems: 'center' }, buttonText: { color: Colors.roseDark, fontWeight: '700' } });
+import { useApp } from "@/contexts/AppContext";
+import { Colors } from "@/theme";
+import { router } from "expo-router";
+import {
+    Alert,
+    Pressable,
+    SafeAreaView,
+    StyleSheet,
+    Text,
+    View,
+} from "react-native";
+export default function ProfileScreen() {
+  const { profile, resetProfile } = useApp();
+  const reset = () =>
+    Alert.alert(
+      "Reiniciar registro",
+      "Se eliminarán los datos guardados en este dispositivo.",
+      [
+        { text: "Cancelar", style: "cancel" },
+        {
+          text: "Reiniciar",
+          style: "destructive",
+          onPress: async () => {
+            await resetProfile();
+            router.replace("/onboarding");
+          },
+        },
+      ],
+    );
+  return (
+    <SafeAreaView style={styles.safe}>
+      <View style={styles.container}>
+        <Text style={styles.title}>Mi perfil</Text>
+        <View style={styles.card}>
+          <Text style={styles.name}>{profile?.name}</Text>
+          <Text style={styles.detail}>
+            Idioma: {profile?.language === "mi" ? "Miskito" : "Español"}
+          </Text>
+          <Text style={styles.detail}>Etapa: {profile?.stage}</Text>
+        </View>
+        <Pressable onPress={reset} style={styles.button}>
+          <Text style={styles.buttonText}>Reiniciar onboarding</Text>
+        </Pressable>
+      </View>
+    </SafeAreaView>
+  );
+}
+const styles = StyleSheet.create({
+  safe: { flex: 1, backgroundColor: Colors.background },
+  container: { padding: 24 },
+  title: { fontSize: 26, fontWeight: "800", color: Colors.text },
+  card: {
+    marginTop: 22,
+    borderRadius: 16,
+    padding: 18,
+    backgroundColor: Colors.surface,
+    borderWidth: 1,
+    borderColor: Colors.border,
+  },
+  name: {
+    fontSize: 19,
+    color: Colors.roseDark,
+    fontWeight: "700",
+    marginBottom: 12,
+  },
+  detail: { color: Colors.muted, marginTop: 5 },
+  button: {
+    marginTop: 24,
+    borderWidth: 1,
+    borderColor: "#E9B7C2",
+    borderRadius: 12,
+    padding: 14,
+    alignItems: "center",
+  },
+  buttonText: { color: Colors.roseDark, fontWeight: "700" },
+});
