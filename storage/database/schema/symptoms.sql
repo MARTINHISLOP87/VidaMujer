@@ -1,0 +1,6 @@
+CREATE TABLE IF NOT EXISTS symptoms (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL UNIQUE,
+    icon TEXT,
+    description TEXT
+);
