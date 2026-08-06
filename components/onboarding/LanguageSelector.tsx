@@ -61,6 +61,7 @@ const styles = StyleSheet.create({
   },
   roseActive: { backgroundColor: Colors.rose, borderColor: Colors.rose },
   orangeActive: { backgroundColor: Colors.orange, borderColor: Colors.orange },
+  ambarActive: { backgroundColor: Colors.amber, borderColor: Colors.amber },
   optionText: { color: Colors.text, fontSize: 14, fontWeight: "600" },
   activeText: { color: Colors.white },
 });

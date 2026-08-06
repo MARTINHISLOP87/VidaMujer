@@ -171,7 +171,7 @@ const styles = StyleSheet.create({
     width: "100%",
     maxWidth: 520,
     alignSelf: "center",
-    backgroundColor: Colors.surface,
+    backgroundColor: Colors.white,
     borderRadius: 25,
     overflow: "hidden",
     shadowColor: "#6B3F47",
@@ -223,8 +223,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   finish: {
-    backgroundColor: "linear-gradient(90deg, #FF7A7A 0%, #fd8105 100%)",
-    //backgroundColor: Colors.rose,
+    backgroundColor: Colors.rose,
     paddingVertical: 15,
     borderRadius: 13,
     flexDirection: "row",

@@ -3,12 +3,12 @@ import { Ionicons } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 import { router } from "expo-router";
 import {
-    Image,
-    Pressable,
-    SafeAreaView,
-    StyleSheet,
-    Text,
-    View,
+  Image,
+  Pressable,
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  View,
 } from "react-native";
 
 export default function WelcomeScreen() {
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     borderRadius: 65,
-    backgroundColor: Colors.surface,
+    backgroundColor: Colors.white,
     shadowColor: Colors.rose,
     shadowOpacity: 0.15,
     shadowRadius: 22,
@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
     maxWidth: 310,
   },
   card: {
-    backgroundColor: Colors.surface,
+    backgroundColor: Colors.white,
     borderRadius: 24,
     padding: Spacing.lg,
     shadowColor: "#6A4A4A",

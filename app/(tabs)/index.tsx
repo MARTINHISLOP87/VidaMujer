@@ -1,8 +1,99 @@
-import { Ionicons } from '@expo/vector-icons';
-import { router } from 'expo-router';
-import { Pressable, SafeAreaView, ScrollView, StyleSheet, Text, View } from 'react-native';
-import { useApp } from '@/contexts/AppContext';
-import { Colors, Spacing } from '@/theme';
+import { BrandHeader } from "@/components/onboarding/BrandHeader";
+import { useApp } from "@/contexts/AppContext";
+import { Colors, Spacing } from "@/theme";
+import { Ionicons } from "@expo/vector-icons";
+import { router } from "expo-router";
+import {
+  Pressable,
+  SafeAreaView,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 
-export default function HomeScreen() { const { profile } = useApp(); const stageTitle = { menstruation: 'Ciclo menstrual', pregnancy: 'Embarazo', menopause: 'Menopausia' }[profile?.stage ?? 'menstruation']; return <SafeAreaView style={styles.safe}><ScrollView contentContainerStyle={styles.container}><Text style={styles.greeting}>Hola, {profile?.name ?? 'hermana'} 🌸</Text><Text style={styles.subheading}>Tu bienestar, en cada etapa.</Text><View style={styles.hero}><Ionicons name="heart" size={30} color={Colors.rose} /><View><Text style={styles.heroTitle}>{stageTitle}</Text><Text style={styles.heroText}>Tu acompañamiento personalizado está listo.</Text></View></View><Text style={styles.section}>Explora VidaMujer</Text><View style={styles.grid}>{[['calendar', 'Seguimiento', '/(tabs)/seguimiento'], ['chatbubble-ellipses', 'Consulta IA', '/(tabs)/ia'], ['person', 'Mi perfil', '/(tabs)/perfil']] .map(([icon, label, route]) => <Pressable key={label} style={styles.item} onPress={() => router.push(route as never)}><Ionicons name={icon as keyof typeof Ionicons.glyphMap} size={25} color={Colors.rose} /><Text style={styles.itemText}>{label}</Text></Pressable>)}</View></ScrollView></SafeAreaView>; }
-const styles = StyleSheet.create({ safe: { flex: 1, backgroundColor: Colors.background }, container: { padding: Spacing.lg }, greeting: { fontSize: 27, fontWeight: '800', color: Colors.text }, subheading: { marginTop: 5, color: Colors.muted, fontSize: 15 }, hero: { flexDirection: 'row', gap: 14, alignItems: 'center', padding: 18, backgroundColor: Colors.roseLight, borderRadius: 18, marginTop: 27 }, heroTitle: { color: Colors.roseDark, fontSize: 17, fontWeight: '700' }, heroText: { color: '#80515C', fontSize: 13, marginTop: 3 }, section: { marginTop: 27, marginBottom: 12, color: Colors.text, fontWeight: '700', fontSize: 18 }, grid: { gap: 10 }, item: { flexDirection: 'row', alignItems: 'center', gap: 13, padding: 16, backgroundColor: Colors.surface, borderRadius: 14, borderWidth: 1, borderColor: Colors.border }, itemText: { color: Colors.text, fontSize: 15, fontWeight: '600' } });
+export default function HomeScreen() {
+  const { profile } = useApp();
+  const stageTitle = {
+    menstruation: "Ciclo menstrual",
+    pregnancy: "Embarazo",
+    menopause: "Menopausia",
+  }[profile?.stage ?? "menstruation"];
+  return (
+    <SafeAreaView style={styles.safe}>
+      <ScrollView contentContainerStyle={styles.container}>
+        <BrandHeader />
+        <Text style={styles.greeting}>
+          Hola, {profile?.name ?? "hermana"} 🌸
+        </Text>
+        <Text style={styles.subheading}>Tu bienestar, en cada etapa.</Text>
+        <View style={styles.hero}>
+          <Ionicons name="heart" size={30} color={Colors.rose} />
+          <View>
+            <Text style={styles.heroTitle}>{stageTitle}</Text>
+            <Text style={styles.heroText}>
+              Tu acompañamiento personalizado está listo.
+            </Text>
+          </View>
+        </View>
+        <Text style={styles.section}>Explora VidaMujer</Text>
+        <View style={styles.grid}>
+          {[
+            ["calendar", "Seguimiento", "/(tabs)/seguimiento"],
+            ["chatbubble-ellipses", "Consulta IA", "/(tabs)/ia"],
+            ["person", "Mi perfil", "/(tabs)/perfil"],
+          ].map(([icon, label, route]) => (
+            <Pressable
+              key={label}
+              style={styles.item}
+              onPress={() => router.push(route as never)}
+            >
+              <Ionicons
+                name={icon as keyof typeof Ionicons.glyphMap}
+                size={25}
+                color={Colors.rose}
+              />
+              <Text style={styles.itemText}>{label}</Text>
+            </Pressable>
+          ))}
+        </View>
+      </ScrollView>
+    </SafeAreaView>
+  );
+}
+const styles = StyleSheet.create({
+  safe: { flex: 1, backgroundColor: Colors.background },
+  container: { padding: Spacing.lg },
+  greeting: { fontSize: 27, fontWeight: "800", color: Colors.text },
+  subheading: { marginTop: 5, color: Colors.muted, fontSize: 15 },
+  hero: {
+    flexDirection: "row",
+    gap: 14,
+    alignItems: "center",
+    padding: 18,
+    backgroundColor: Colors.roseLight,
+    borderRadius: 18,
+    marginTop: 27,
+  },
+  heroTitle: { color: Colors.roseDark, fontSize: 17, fontWeight: "700" },
+  heroText: { color: "#80515C", fontSize: 13, marginTop: 3 },
+  section: {
+    marginTop: 27,
+    marginBottom: 12,
+    color: Colors.text,
+    fontWeight: "700",
+    fontSize: 18,
+  },
+  grid: { gap: 10 },
+  item: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 13,
+    padding: 16,
+    backgroundColor: Colors.white,
+    borderRadius: 14,
+    borderWidth: 1,
+    borderColor: Colors.border,
+  },
+  itemText: { color: Colors.text, fontSize: 15, fontWeight: "600" },
+});

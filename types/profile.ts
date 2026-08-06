@@ -1,5 +1,5 @@
-export type WomanStage = 'menstruation' | 'pregnancy' | 'menopause';
-export type LanguageCode = 'es' | 'mi';
+export type WomanStage = "menstruation" | "pregnancy" | "menopause";
+export type LanguageCode = "es" | "mi" | "ma";
 
 export interface UserProfile {
   id: string;
