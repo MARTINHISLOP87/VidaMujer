@@ -1,50 +1,86 @@
-# Welcome to your Expo app 👋
+# VidaMujer
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+## Descripción
 
-## Get started
+VidaMujer es una aplicación móvil desarrollada con React Native y Expo para brindar acompañamiento integral a las mujeres en diferentes etapas de su vida, incluyendo menstruación, embarazo y menopausia.
 
-1. Install dependencies
+## Tecnologías utilizadas
 
-   ```bash
-   npm install
-   ```
+- React Native
+- Expo SDK 54
+- Expo Router
+- TypeJavaScript
+- Visual Studio Code
+- Git y GitHub
 
-2. Start the app
+## Requisitos
 
-   ```bash
-   npx expo start
-   ```
+- Node.js 22 o superior
+- npm
+- Expo Go (Android o iOS)
+- Visual Studio Code
+- Git
 
-In the output, you'll find options to open the app in a
+## Instalación
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
+1. Clonar el repositorio:
 
 ```bash
-npm run reset-project
+git clone https://github.com/MARTINHISLOP87/VidaMujer.git
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+2. Entrar al proyecto:
 
-## Learn more
+```bash
+cd VidaMujer
+```
 
-To learn more about developing your project with Expo, look at the following resources:
+3. Instalar dependencias:
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+```bash
+npm install
+```
 
-## Join the community
+4. Ejecutar la aplicación:
 
-Join our community of developers creating universal apps.
+```bash
+npx expo start
+```
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+## Estructura del proyecto
+
+```
+VidaMujer/
+│
+├── app/
+├── assets/
+├── components/
+├── constants/
+├── contexts/
+├── hooks/
+├── node_modules/
+├── scripts/
+├── services/
+├── storage/
+├── theme/
+├── types/
+├── utils/
+└──AGENTS.md
+└──app.json
+└──App.tsx
+└──eslint.config.js
+└──expo-env.d.ts
+└──index.ts
+└──package-look.json
+└──package.json
+└── README.md
+└──tsconfig.json
+```
+
+## Control de versiones
+
+El proyecto utiliza Git y GitHub. Cada nueva funcionalidad se desarrolla en su propia rama y posteriormente se integra a la rama principal mediante commits documentados.
+
+## Estado del proyecto
+
+En desarrollo.

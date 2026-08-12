@@ -1,11 +1,11 @@
-CREATE TABLE IF NOT EXISTS menstrual_cycles (
+CREATE TABLE IF NOT EXISTS cycle_predictions (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     user_id INTEGER NOT NULL,
     start_date DATE NOT NULL,
-    end_date TEXT NOT NULL,
+    end_date DATE,
     duration_days INTEGER,
     cycle_length INTEGER,
-    flow_type_id INTEGER,
+    flow_id INTEGER,
     is_predicted INTEGER DEFAULT 0,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME,
@@ -13,5 +13,4 @@ CREATE TABLE IF NOT EXISTS menstrual_cycles (
     FOREIGN KEY(user_id)
         REFERENCES users(id)
         ON DELETE CASCADE
-
 );

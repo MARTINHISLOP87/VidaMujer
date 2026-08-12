@@ -1,4 +1,12 @@
-import React, { useMemo, useState } from "react";
+import { useApp } from "@/contexts/AppContext";
+
+import {
+  getPeriods,
+  registerPeriod,
+} from "@/app/menstruacion/MenstruationSevice";
+
+import React, { useEffect, useMemo, useState } from "react";
+
 import {
   Alert,
   Platform,
@@ -27,12 +35,43 @@ import { FlowIntensity, MenstruationPeriod } from "../../types/cycle";
 import { calculatePrediction } from "../../utils/cycleCalculator";
 import CustomCalendar from "../onboarding/CustomCalendar";
 
-interface Props {
-  periods: MenstruationPeriod[];
-  onAddPeriod(period: MenstruationPeriod): void;
-}
+export default function MenstruationTracker() {
+  const { profile } = useApp();
 
-export default function MenstruationTracker({ periods, onAddPeriod }: Props) {
+  // Historial real cargado desde SQLite.
+  const [periods, setPeriods] = useState<MenstruationPeriod[]>([]);
+
+  // Estado de carga inicial.
+  const [loading, setLoading] = useState(true);
+
+  const loadPeriods = async () => {
+    // Si todavía no existe perfil,
+    // no podemos consultar SQLite.
+    if (!profile?.id) {
+      setLoading(false);
+      return;
+    }
+
+    try {
+      // El ID del perfil ahora corresponde
+      // al ID real de SQLite.
+      const userId = Number(profile.id);
+
+      // Consultamos el historial persistente.
+      const records = await getPeriods(userId);
+
+      // Actualizamos la interfaz.
+      setPeriods(records);
+    } catch (error) {
+      console.error("Error cargando períodos:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+  useEffect(() => {
+    loadPeriods();
+  }, [profile?.id]);
+
   // Inicializamos con la fecha de hoy limpia de horas UTC en formato local YYYY-MM-DD
   const getTodayString = () => {
     const today = new Date();
@@ -86,44 +125,65 @@ export default function MenstruationTracker({ periods, onAddPeriod }: Props) {
     }
   };
 
-  function savePeriod() {
-    if (!date) return;
+  async function savePeriod() {
+    // Verificamos que exista usuario.
+    if (!profile?.id) {
+      Alert.alert("Error", "No existe una usuaria registrada.");
 
-    // SOLUCCIÓN AL TIMEZONE BUG: Forzar el parseo de horas locales "T00:00:00"
-    const start = new Date(`${date}T00:00:00`);
-    const end = new Date(start);
-    const finalDuration = duration === "" ? 5 : Number(duration);
+      return;
+    }
 
-    // Sumar días de forma precisa
-    end.setDate(start.getDate() + finalDuration - 1);
+    try {
+      // Convertimos el ID almacenado
+      // en AppContext al ID numérico de SQLite.
+      const userId = Number(profile.id);
 
-    // Convertir de vuelta a string de forma manual y segura sin desfases ISO UTC
-    const yearEnd = end.getFullYear();
-    const monthEnd = String(end.getMonth() + 1).padStart(2, "0");
-    const dayEnd = String(end.getDate()).padStart(2, "0");
-    const formattedEndDate = `${yearEnd}-${monthEnd}-${dayEnd}`;
+      // Calculamos la duración.
+      const finalDuration = duration === "" ? 5 : Number(duration);
 
-    const newRecord: MenstruationPeriod = {
-      id: Date.now().toString(),
-      startDate: date,
-      endDate: formattedEndDate,
-      cycleLength: 28,
-      flowIntensity: flow,
-    };
+      // Construimos la fecha inicial.
+      const start = new Date(`${date}T00:00:00`);
 
-    onAddPeriod(newRecord);
+      // Calculamos la fecha final.
+      const end = new Date(start);
 
-    // MENSAJE DE ÉXITO NATIVO: Alerta de registro completado con éxito
-    Alert.alert(
-      "¡Registro Exitoso!",
-      "El período menstrual ha sido guardado correctamente en tu historial.",
-      [{ text: "Entendido", style: "default" }],
-    );
+      end.setDate(start.getDate() + finalDuration - 1);
 
-    // Reinicios de formulario seguros
-    setDate(getTodayString());
-    setDuration("5");
-    setFlow("Medio");
+      // Formateamos la fecha final.
+      const formattedEndDate = `${end.getFullYear()}-${String(
+        end.getMonth() + 1,
+      ).padStart(2, "0")}-${String(end.getDate()).padStart(2, "0")}`;
+
+      // Guardamos directamente en SQLite.
+      await registerPeriod({
+        userId,
+        startDate: date,
+        endDate: formattedEndDate,
+        durationDays: finalDuration,
+        cycleLength: profile.cycleLength ?? 28,
+        flowIntensity: flow,
+      });
+
+      // Volvemos a consultar SQLite.
+      // Esto garantiza que la UI
+      // muestre exactamente lo persistido.
+      await loadPeriods();
+
+      // Mostramos confirmación.
+      Alert.alert(
+        "¡Registro Exitoso!",
+        "El período menstrual ha sido guardado correctamente.",
+      );
+
+      // Limpiamos el formulario.
+      setDate(getTodayString());
+      setDuration("5");
+      setFlow("Medio");
+    } catch (error) {
+      console.error("Error guardando período:", error);
+
+      Alert.alert("Error", "No se pudo guardar el período menstrual.");
+    }
   }
 
   // Información de las fases del ciclo menstrual

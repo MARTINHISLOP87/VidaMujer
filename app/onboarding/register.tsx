@@ -2,12 +2,18 @@ import { BrandHeader } from "@/components/onboarding/BrandHeader";
 import { LanguageSelector } from "@/components/onboarding/LanguageSelector";
 import { StageDescription } from "@/components/onboarding/StageDescription";
 import { StageSelector } from "@/components/onboarding/StageSelector";
+
 import { useApp } from "@/contexts/AppContext";
+
+import { registerUser } from "@/app/onboarding/RegisterUser";
+
 import { Colors, Spacing } from "@/theme";
 import { LanguageCode, WomanStage } from "@/types/profile";
+
 import { Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
 import { useState } from "react";
+
 import {
   Alert,
   KeyboardAvoidingView,
@@ -31,27 +37,90 @@ export default function RegisterScreen() {
   const [saving, setSaving] = useState(false);
 
   const finish = async () => {
+    // Validamos la FUR solamente
+    // cuando la etapa seleccionada es embarazo.
     if (stage === "pregnancy" && !/^\d{4}-\d{2}-\d{2}$/.test(lmpDate)) {
+      // Informamos a la usuaria que debe introducir la fecha.
       Alert.alert(
         "Fecha requerida",
         "Escribe tu FUR con el formato AAAA-MM-DD.",
       );
+
+      // Detenemos el proceso.
       return;
     }
+
+    // Activamos el estado visual de guardado.
     setSaving(true);
-    const now = new Date().toISOString();
-    await completeOnboarding({
-      id: `profile-${Date.now()}`,
-      name: name.trim() || "Hermana / Warmisunchis",
-      language,
-      stage,
-      cycleLength: stage === "menstruation" ? cycleLength : undefined,
-      lmpDate: stage === "pregnancy" ? lmpDate : undefined,
-      onboarded: true,
-      createdAt: now,
-      updatedAt: now,
-    });
-    router.replace("/(tabs)");
+
+    try {
+      // Registramos realmente la usuaria en SQLite.
+      const databaseUser = await registerUser({
+        // Guardamos el nombre escrito.
+        name: name.trim() || "Hermana / Warmisunchis",
+
+        // Guardamos el código del idioma.
+        language,
+
+        // Guardamos la etapa.
+        stage,
+
+        // Guardamos la duración del ciclo
+        // solamente cuando corresponde.
+        cycleLength: stage === "menstruation" ? cycleLength : undefined,
+      });
+
+      // Creamos la fecha de actualización
+      // para mantener el modelo actual del contexto.
+      const now = new Date().toISOString();
+
+      // Actualizamos el estado global de la aplicación.
+      await completeOnboarding({
+        // IMPORTANTE:
+        // Ahora utilizamos el ID real generado por SQLite.
+        id: String(databaseUser.userId),
+
+        // Nombre almacenado realmente.
+        name: databaseUser.displayName,
+
+        // Idioma seleccionado.
+        language: databaseUser.languageCode as LanguageCode,
+
+        // Etapa seleccionada.
+        stage: databaseUser.stageCode as WomanStage,
+
+        // Duración del ciclo.
+        cycleLength: stage === "menstruation" ? cycleLength : undefined,
+
+        // FUR cuando corresponde.
+        lmpDate: stage === "pregnancy" ? lmpDate : undefined,
+
+        // Marcamos el onboarding como completado.
+        onboarded: true,
+
+        // Fecha de creación.
+        createdAt: now,
+
+        // Fecha de actualización.
+        updatedAt: now,
+      });
+
+      // Navegamos al dashboard.
+      router.replace("/(tabs)");
+    } catch (error) {
+      // Mostramos en consola el error técnico.
+      console.error("Error al guardar la usuaria en SQLite:", error);
+
+      // Informamos a la usuaria.
+      Alert.alert(
+        "No se pudo guardar",
+        "Ocurrió un problema al guardar tu registro. Intenta nuevamente.",
+      );
+    } finally {
+      // Quitamos el estado de guardado
+      // independientemente de si hubo éxito o error.
+      setSaving(false);
+    }
   };
 
   return (
