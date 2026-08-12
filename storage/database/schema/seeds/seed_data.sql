@@ -20,8 +20,37 @@ INSERT OR IGNORE INTO moods(name,emoji) VALUES
 ('Cansada','😴'),
 ('Enamorada','❤️');
 
-INSERT OR IGNORE INTO flows(name) VALUES
-('Ligero'),
-('Moderado'),
-('Abundante'),
-('Muy abundante');
+-- ============================================================
+-- DATOS INICIALES DE INTENSIDAD DEL FLUJO MENSTRUAL
+-- ============================================================
+
+-- Insertamos el flujo de intensidad baja.
+-- INSERT OR IGNORE evita duplicarlo si el seed se ejecuta nuevamente.
+INSERT OR IGNORE INTO flows (
+    name,
+    description
+)
+VALUES (
+    'Bajo',
+    'Flujo menstrual de intensidad baja.'
+);
+
+-- Insertamos el flujo de intensidad media.
+INSERT OR IGNORE INTO flows (
+    name,
+    description
+)
+VALUES (
+    'Medio',
+    'Flujo menstrual de intensidad media.'
+);
+
+-- Insertamos el flujo de intensidad alta.
+INSERT OR IGNORE INTO flows (
+    name,
+    description
+)
+VALUES (
+    'Alto',
+    'Flujo menstrual de intensidad alta.'
+);

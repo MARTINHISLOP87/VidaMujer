@@ -5,7 +5,7 @@ export const Colors = {
   fucsiaDark: "#E394C7",
 
   //colores de texto y fondo
-  text: "#292524",
+  text: "#000000",
   muted: "#78716C",
   white: "#FFFFFF",
   amber: "#D99131",
