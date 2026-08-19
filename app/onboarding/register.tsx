@@ -1,4 +1,3 @@
-import { BrandHeader } from "@/components/onboarding/BrandHeader";
 import { LanguageSelector } from "@/components/onboarding/LanguageSelector";
 import { StageDescription } from "@/components/onboarding/StageDescription";
 import { StageSelector } from "@/components/onboarding/StageSelector";
@@ -14,6 +13,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
 import { useState } from "react";
 
+import AndeanBanner from "@/components/onboarding/AndeanBanner";
 import {
   Alert,
   KeyboardAvoidingView,
@@ -106,7 +106,7 @@ export default function RegisterScreen() {
       });
 
       // Navegamos al dashboard.
-      router.replace("/(tabs)");
+      router.replace("/(tabs)/symptoms");
     } catch (error) {
       // Mostramos en consola el error técnico.
       console.error("Error al guardar la usuaria en SQLite:", error);
@@ -134,7 +134,7 @@ export default function RegisterScreen() {
           contentContainerStyle={styles.scroll}
         >
           <View style={styles.card}>
-            <BrandHeader />
+            <AndeanBanner />
             <View style={styles.content}>
               <View>
                 <Text style={styles.label}>

@@ -5,6 +5,7 @@ import { Tabs } from "expo-router";
 export default function TabLayout() {
   return (
     <Tabs
+      initialRouteName="symptoms"
       screenOptions={{
         headerShown: false,
         tabBarActiveTintColor: Colors.rose,
@@ -14,11 +15,44 @@ export default function TabLayout() {
       }}
     >
       <Tabs.Screen
+        name="symptoms"
+        options={{
+          title: "Diario",
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="book" color={color} size={size} />
+          ),
+        }}
+      />
+      <Tabs.Screen
         name="index"
         options={{
-          title: "Inicio",
+          href: null,
+        }}
+      />
+      <Tabs.Screen
+        name="pregnancy"
+        options={{
+          title: "Embarazo",
           tabBarIcon: ({ color, size }) => (
-            <Ionicons name="home" color={color} size={size} />
+            <Ionicons name="star" color={color} size={size} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="menopause"
+        options={{
+          title: "Menopausia",
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="sparkles-outline" color={color} size={size} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="information"
+        options={{
+          title: "Saberes",
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="moon" color={color} size={size} />
           ),
         }}
       />
@@ -28,15 +62,6 @@ export default function TabLayout() {
           title: "Seguimiento",
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="calendar" color={color} size={size} />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="ia"
-        options={{
-          title: "IA",
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="chatbubble-ellipses" color={color} size={size} />
           ),
         }}
       />

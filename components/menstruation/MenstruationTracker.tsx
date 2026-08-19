@@ -1,9 +1,8 @@
-import { useApp } from "@/contexts/AppContext";
-
 import {
   getPeriods,
   registerPeriod,
 } from "@/app/menstruacion/MenstruationSevice";
+import { useApp } from "@/contexts/AppContext";
 
 import React, { useEffect, useMemo, useState } from "react";
 
@@ -33,14 +32,13 @@ import {
 import { Colors } from "../../theme";
 import { FlowIntensity, MenstruationPeriod } from "../../types/cycle";
 import { calculatePrediction } from "../../utils/cycleCalculator";
+import AppHeader from "../onboarding/AppHeader";
 import CustomCalendar from "../onboarding/CustomCalendar";
-
 export default function MenstruationTracker() {
   const { profile } = useApp();
 
   // Historial real cargado desde SQLite.
   const [periods, setPeriods] = useState<MenstruationPeriod[]>([]);
-
   // Estado de carga inicial.
   const [loading, setLoading] = useState(true);
 
@@ -227,9 +225,14 @@ export default function MenstruationTracker() {
   ];
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.title}>Seguimiento Menstrual</Text>
-      </View>
+      <AppHeader
+        userName={profile?.name ?? "Usuario"}
+        language={profile?.language ?? "es"}
+        subtitle="Menstruacion"
+        onMoonPress={() => console.log("luna")}
+        onSettingsPress={() => console.log("ajustes")}
+        onLanguagePress={() => console.log("idioma")}
+      />
       {prediction && (
         <LinearGradient
           colors={["#f43f5e", "#e11d48", "#db2777"]}
@@ -439,8 +442,10 @@ export default function MenstruationTracker() {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 20,
-    gap: 15,
+    padding: 0,
+    paddingBottom: 16,
+    gap: 20,
+    backgroundColor: Colors.background,
   },
   header: {
     backgroundColor: Colors.rose,
@@ -461,6 +466,18 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "700",
     color: Colors.white,
+  },
+  cardheader: {
+    width: "100%",
+    maxWidth: 520,
+    alignSelf: "center",
+    backgroundColor: Colors.white,
+    borderRadius: 25,
+    overflow: "hidden",
+    shadowColor: "#6B3F47",
+    shadowOpacity: 0.14,
+    shadowRadius: 20,
+    elevation: 5,
   },
   card: {
     backgroundColor: "#FCE7F3",
@@ -490,6 +507,7 @@ const styles = StyleSheet.create({
   label: {
     fontWeight: "600",
     marginTop: 5,
+    marginLeft: 16,
     color: "#374151",
   },
   input: {
@@ -542,7 +560,7 @@ const styles = StyleSheet.create({
     shadowRadius: 3.84,
     elevation: 5,
     position: "relative",
-    marginVertical: 10, // Margen para separarlo de otros elementos en tu pantalla
+    marginVertical: 0, // Margen para separarlo de otros elementos en tu pantalla
   },
   moonBackground: {
     position: "absolute",
@@ -789,7 +807,7 @@ const styles = StyleSheet.create({
   },
   // --- Estilos de la Sección Educativa (Fases en 2 Columnas) ---
   phasesSection: {
-    marginTop: 10,
+    marginTop: 0,
     marginBottom: 20,
   },
   phasesHeader: {
@@ -802,6 +820,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "bold",
     color: "#334155",
+    marginLeft: 16,
   },
   phasesGridContainer: {
     flexDirection: "row",
