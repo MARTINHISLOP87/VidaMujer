@@ -101,7 +101,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: "#F5F1EF",
     alignItems: "center",
-    backgroundColor: Colors.surface,
+    backgroundColor: Colors.roseLight,
   },
   icon: {
     width: 42,

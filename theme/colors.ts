@@ -10,6 +10,7 @@ export const Colors = {
   white: "#FFFFFF",
   amber: "#D99131",
   verde: "#10b981",
+  verdeligt: "#2afab5",
   azul: "#6366f1",
   orange: "#F48A58",
 

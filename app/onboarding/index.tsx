@@ -1,6 +1,4 @@
 // Importamos nuestro botón de prueba SQLite.
-import DatabaseTestButton from "@/storage/database/DatabaseTestButton";
-
 // Importamos los colores y espacios globales.
 import { Colors, Spacing } from "@/theme";
 
@@ -60,9 +58,6 @@ export default function WelcomeScreen() {
             privados.
           </Text>
 
-          {/* Botón temporal para probar SQLite. */}
-          <DatabaseTestButton />
-
           {/* Botón para comenzar el registro. */}
           <Pressable
             onPress={() => router.push("/onboarding/register")}
@@ -85,7 +80,7 @@ const styles = StyleSheet.create({
   // Área segura.
   safe: {
     flex: 1,
-    backgroundColor: "#FFF0F3",
+    backgroundColor: Colors.background,
   },
 
   // Contenedor principal.

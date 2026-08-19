@@ -72,15 +72,15 @@ export default function CustomCalendar({
         },
       }} // resalta la fecha seleccionada
       theme={{
-        backgroundColor: "#ffffff",
-        calendarBackground: "#ffffff",
+        backgroundColor: Colors.roseLight,
+        calendarBackground: Colors.roseLight,
         textSectionTitleColor: "#b6c1cd",
         selectedDayBackgroundColor: "#E6F4FE",
-        selectedDayTextColor: "#000000",
+        selectedDayTextColor: Colors.text,
         todayTextColor: "#f97ee1",
         dayTextColor: "#2d4150",
-        arrowColor: Colors.fucsia,
-        monthTextColor: "#000000",
+        arrowColor: Colors.fucsiaLight,
+        monthTextColor: Colors.text,
         textMonthFontWeight: "bold",
       }}
       style={styles.calendarComponent}

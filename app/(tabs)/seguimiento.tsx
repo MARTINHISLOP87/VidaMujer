@@ -21,6 +21,11 @@ export default function TrackingScreen() {
     setPeriods(updatedPeriods);
   };
 
+  const trackerProps = {
+    periods,
+    onAddPeriod: addPeriod,
+  } as any;
+
   return (
     <SafeAreaView style={styles.safe}>
       {isLoading ? (
@@ -30,7 +35,7 @@ export default function TrackingScreen() {
           size="large"
         />
       ) : (
-        <MenstruationTracker periods={periods} onAddPeriod={addPeriod} />
+        <MenstruationTracker {...trackerProps} />
       )}
     </SafeAreaView>
   );

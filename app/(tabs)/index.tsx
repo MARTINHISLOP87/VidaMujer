@@ -1,4 +1,4 @@
-import { BrandHeader } from "@/components/onboarding/BrandHeader";
+import AndeanBanner from "@/components/onboarding/AndeanBanner";
 import { useApp } from "@/contexts/AppContext";
 import { Colors, Spacing } from "@/theme";
 import { Ionicons } from "@expo/vector-icons";
@@ -22,7 +22,9 @@ export default function HomeScreen() {
   return (
     <SafeAreaView style={styles.safe}>
       <ScrollView contentContainerStyle={styles.container}>
-        <BrandHeader />
+        <View style={styles.card}>
+          <AndeanBanner />
+        </View>
         <Text style={styles.greeting}>
           Hola, {profile?.name ?? "hermana"} 🌸
         </Text>
@@ -75,6 +77,19 @@ const styles = StyleSheet.create({
     borderRadius: 18,
     marginTop: 27,
   },
+  card: {
+    width: "100%",
+    maxWidth: 520,
+    alignSelf: "center",
+    backgroundColor: Colors.white,
+    borderRadius: 25,
+    overflow: "hidden",
+    shadowColor: "#6B3F47",
+    shadowOpacity: 0.14,
+    shadowRadius: 20,
+    elevation: 5,
+  },
+
   heroTitle: { color: Colors.roseDark, fontSize: 17, fontWeight: "700" },
   heroText: { color: "#80515C", fontSize: 13, marginTop: 3 },
   section: {
