@@ -58,7 +58,7 @@ export default function PregnancyTracker({
         height: "~2 mm", // Tamaño aproximado
         weight: "<1 g", // Peso aproximado
         nativeName: "Chía muju (Quechua)", // Denominación originaria
-        desc: "Tu wawa es un brote de vida apenas perceptible pero creciendo en división celular acelerada.", // Descripción evolutiva
+        desc: "Tu bebe es un brote de vida apenas perceptible pero creciendo en división celular acelerada.", // Descripción evolutiva
       };
     } else if (week <= 8) {
       return {
@@ -66,7 +66,7 @@ export default function PregnancyTracker({
         height: "~1.5 cm",
         weight: "~1 g",
         nativeName: "Capulí ruru",
-        desc: "El corazón de tu wawa ya late fuertemente. Se están definiendo sus ojitos y extremidades.",
+        desc: "El corazón de tu bebe ya late fuertemente. Se están definiendo sus ojitos y extremidades.",
       };
     } else if (week <= 12) {
       return {
@@ -106,7 +106,7 @@ export default function PregnancyTracker({
         height: "~37 cm",
         weight: "~1.1 kg",
         nativeName: "Melloco o Melón",
-        desc: "La wawa puede abrir sus ojos e identificar la luz exterior brillante sobre tu barriga.",
+        desc: "La bebe puede abrir sus ojos e identificar la luz exterior brillante sobre tu barriga.",
       };
     } else if (week <= 32) {
       return {
@@ -246,12 +246,12 @@ export default function PregnancyTracker({
         </View>
       </View>
 
-      {/* 2. SECCIÓN DE CRECIMIENTO DE LA WAWA (TAMAÑO Y HITOS EN DESARROLLO) */}
+      {/* 2. SECCIÓN DE CRECIMIENTO DE LA bebe (TAMAÑO Y HITOS EN DESARROLLO) */}
       <View style={styles.babyCard}>
         <View style={styles.cardTitleRow}>
           <Ionicons name="happy-outline" size={20} color="#f97316" />
           <Text style={styles.cardTitleText}>
-            ¿Cómo va el crecimiento de tu wawa hoy?
+            ¿Cómo va el crecimiento de tu bebe hoy?
           </Text>
         </View>
 
@@ -290,11 +290,11 @@ export default function PregnancyTracker({
             {/* Consejo bilingüe de apego paterno / materno */}
             <View style={styles.bilingualAdviceBox}>
               <Text style={styles.bilingualLabel}>
-                Consejo bilingüe de apego / Wawa munanapallay:
+                Consejo bilingüe de apego / bebe munanapallay:
               </Text>
               <Text style={styles.bilingualQuote}>
                 Sapa tuta kanchay wasapi mamitapa ruranta llamiy, rimakuy. La
-                wawa absorbe tus vibraciones y tu amor incondicional desde el
+                bebe absorbe tus vibraciones y tu amor incondicional desde el
                 vientre.
               </Text>
             </View>
