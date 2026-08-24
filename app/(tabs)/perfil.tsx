@@ -39,7 +39,7 @@ export default function ProfileScreen() {
           <Text style={styles.detail}>Etapa: {profile?.stage}</Text>
         </View>
         <Pressable onPress={reset} style={styles.button}>
-          <Text style={styles.buttonText}>Reiniciar onboarding</Text>
+          <Text style={styles.buttonText}>Reiniciar Perfil</Text>
         </Pressable>
       </View>
     </SafeAreaView>

@@ -10,9 +10,9 @@ const descriptions: Record<WomanStage, Record<LanguageCode, string>> = {
     ma: "Para adultas mayores transitando al cese fértil. Control de bochornos, salud de huesos y consejos para vivir en plenitud y sabiduría.",
   },
   pregnancy: {
-    es: "Acompañamiento prenatal semana a semana. Cálculo de fecha de parto, tamaño de la wawa y pautas de seguridad familiar.",
+    es: "Acompañamiento prenatal semana a semana. Cálculo de fecha de parto, tamaño del bebe y pautas de seguridad familiar.",
     mi: "Bliksa laka, luhpia siska sapa simana karkara. Luhpia yuribia tukan bara yapti pain laka tawan dukiara.",
-    ma: "Acompañamiento prenatal semana a semana. Cálculo de fecha de parto, tamaño de la wawa y pautas de seguridad familiar.",
+    ma: "Acompañamiento prenatal semana a semana. Cálculo de fecha de parto, tamaño del bebe y pautas de seguridad familiar.",
   },
   menopause: {
     es: "Para adultas mayores transitando al cese fértil. Control de bochornos, salud de huesos y consejos para vivir en plenitud y sabiduría.",
